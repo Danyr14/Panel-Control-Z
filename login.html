@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Cultivo - Login</title>
+    <link rel="stylesheet" href="../CSS/login.css">
+</head>
+
+<body>
+
+    <!-- INICIO: Banner de cookies -->
+    <div id="banner-cookies" class="banner-cookies">
+        <div class="banner-cookies-contenido">
+            <div class="banner-cookies-texto">
+                <strong>Este sitio utiliza cookies</strong>
+                <p>
+                    Panel-Cosecha-Z utiliza cookies técnicas necesarias y cookies de terceros
+                    para gráficos y exportación PDF. Puedes aceptar todas, rechazar las no
+                    esenciales o configurar tus preferencias.
+                </p>
+            </div>
+
+            <div class="banner-cookies-botones">
+                <button id="btn-aceptar-todas" class="cookie-btn aceptar" type="button">
+                    Aceptar todas
+                </button>
+
+                <button id="btn-rechazar-no-esenciales" class="cookie-btn rechazar" type="button">
+                    Rechazar no esenciales
+                </button>
+
+                <button id="btn-configurar" class="cookie-btn configurar" type="button">
+                    Configurar
+                </button>
+            </div>
+
+            <div class="banner-cookies-enlace">
+                <a href="politica-cookies.html" target="_blank">
+                    Más información en nuestra Política de Cookies
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- FIN: Banner de cookies -->
+
+    <div class="container">
+
+        <img src="../imagenes/logo-tecmtp-removebg-preview.png" alt="Control de cultivo">
+
+        <h1>Control de Cultivo</h1>
+
+        <!-- Texto informativo de privacidad -->
+        <p class="info-finalidad">
+            Tu correo se usará exclusivamente para acceder al sistema y recuperar tu contraseña.
+            No se enviará publicidad ni se compartirá con terceros.
+        </p>
+
+        <div id="mensaje-error" class="mensaje-error"></div>
+
+        <form method="POST" action="../backend/api/login.php">
+
+            <div class="form-group">
+                <label for="email">Ingresa tu correo institucional</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    placeholder="correo@institucion.edu" 
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="password">Ingresa tu contraseña</label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    placeholder="********" 
+                    required
+                >
+            </div>
+
+            <!-- Checkbox de consentimiento -->
+            <div class="form-group consentimiento-grupo">
+                <label class="consentimiento-label">
+                    <input type="checkbox" name="consentimiento" required>
+                    <span>
+                        He leído y acepto el
+                        <a href="aviso-privacidad.html" target="_blank">Aviso de Privacidad</a>,
+                        los
+                        <a href="terminos-condiciones.html" target="_blank">Términos y Condiciones</a>
+                        y la
+                        <a href="politica-cookies.html" target="_blank">Política de Cookies</a>.
+                    </span>
+                </label>
+            </div>
+
+            <!-- Botón corregido: ya no redirecciona directo a index.html -->
+            <button type="submit" class="btn-ingresar">
+                Ingresar
+            </button>
+
+            <div class="forgot-password">
+                <a href="recuperar.html">¿Olvidaste tu contraseña?</a>
+            </div>
+
+        </form>
+
+        <!-- Enlaces legales -->
+        <div class="links-legales">
+            <a href="aviso-privacidad.html" target="_blank">Aviso de Privacidad</a>
+            |
+            <a href="terminos-condiciones.html" target="_blank">Términos y Condiciones</a>
+            |
+            <a href="politica-cookies.html" target="_blank">Política de Cookies</a>
+        </div>
+
+    </div>
+
+    <!-- Script control de cookies -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const bannerCookies = document.getElementById('banner-cookies');
+            const btnAceptarTodas = document.getElementById('btn-aceptar-todas');
+            const btnRechazarNoEsenciales = document.getElementById('btn-rechazar-no-esenciales');
+            const btnConfigurar = document.getElementById('btn-configurar');
+
+            if (localStorage.getItem('cookies-invernadero-z') !== null) {
+                if (bannerCookies) {
+                    bannerCookies.classList.add('oculto');
+                }
+            }
+
+            if (btnAceptarTodas) {
+                btnAceptarTodas.addEventListener('click', function () {
+                    localStorage.setItem('cookies-invernadero-z', 'todas');
+
+                    if (bannerCookies) {
+                        bannerCookies.classList.add('oculto');
+                    }
+                });
+            }
+
+            if (btnRechazarNoEsenciales) {
+                btnRechazarNoEsenciales.addEventListener('click', function () {
+                    localStorage.setItem('cookies-invernadero-z', 'solo-necesarias');
+
+                    if (bannerCookies) {
+                        bannerCookies.classList.add('oculto');
+                    }
+                });
+            }
+
+            if (btnConfigurar) {
+                btnConfigurar.addEventListener('click', function () {
+                    window.location.href = 'politica-cookies.html';
+                });
+            }
+        });
+    </script>
+
+</body>
+
+</html>
+</html>

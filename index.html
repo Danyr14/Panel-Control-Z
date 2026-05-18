@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Invernadero-Z | Dashboard</title>
+
+  <link rel="stylesheet" href="../CSS/dashboard.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="../js/fecha.js" defer></script>
+  <script src="../js/indexfuncion.js?v=6" defer></script>
+  <script src="../js/auth.js" defer></script>
+</head>
+
+<body>
+  <div class="app">
+
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <a href="../frontend/index.html" class="nav-link">
+          <span class="nav-icon">⌂</span>
+          <span>Inicio</span>
+        </a>
+
+        <a href="../frontend/sensores.html" class="nav-link">
+          <span class="nav-icon">⌘</span>
+          <span>Sensores</span>
+        </a>
+
+        <a href="../frontend/control.html" class="nav-link">
+          <span class="nav-icon">🛠</span>
+          <span>Control manual</span>
+        </a>
+
+        <a href="../frontend/automatizacion.html" class="nav-link">
+          <span class="nav-icon">⏻</span>
+          <span>Automatización</span>
+        </a>
+
+        <a href="../frontend/historial.html" class="nav-link">
+          <span class="nav-icon">◔</span>
+          <span>Historial</span>
+        </a>
+      </nav>
+    </aside>
+
+    <main class="main">
+
+      <header class="topbar">
+        <div class="topbar-left">
+          <div>
+            <h1>Inicio</h1>
+            <p>Monitoreo general del sistema Panel Cosecha-Z</p>
+          </div>
+        </div>
+
+        <div class="datetime-box">
+          <div id="fecha-actual"></div>
+          <div id="hora-actual"></div>
+        </div>
+
+        <div class="topbar-right">
+          <button class="icon-btn" type="button" title="Notificaciones">
+            <img src="../img/notification.png" alt="Notificaciones" class="nav-icon-img">
+          </button>
+
+          <button class="icon-btn" type="button" title="Configuración">
+            <img src="../img/setting.png" alt="Configuración" class="nav-icon-img">
+          </button>
+
+          <button class="icon-btn" type="button" title="Perfil">
+            <img src="../img/user.png" alt="Perfil" class="nav-icon-img">
+          </button>
+
+          <div class="user-box">
+            <span class="user-name">Invernadero</span>
+            <button class="icon-btn" type="button" title="Cerrar sesión">
+              <img src="../img/logout.png" alt="Cerrar sesión" class="nav-icon-img">
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="hero-content">
+          <p class="eyebrow">Panel principal</p>
+          <h2>Estado general del cultivo</h2>
+          <p>Resumen en tiempo real de sensores, actuadores y conexión con la ESP32.</p>
+        </div>
+
+        <div class="hero-actions">
+          <button class="primary-btn" type="button">Actualizar datos</button>
+        </div>
+      </section>
+
+      <section class="kpi-grid">
+
+        <article class="card kpi-card">
+          <div class="kpi-top">
+            <span class="kpi-label">Temperatura</span>
+            <span class="kpi-icon temp">🌡</span>
+          </div>
+
+          <div class="kpi-main">
+            <h3>0 °C</h3>
+            <span class="status-badge success">Óptimo</span>
+          </div>
+
+          <p class="kpi-foot">Rango esperado entre 22 °C y 30 °C</p>
+        </article>
+
+        <article class="card kpi-card">
+          <div class="kpi-top">
+            <span class="kpi-label">Humedad ambiente</span>
+            <span class="kpi-icon humidity">💧</span>
+          </div>
+
+          <div class="kpi-main">
+            <h3>0 %</h3>
+            <span class="status-badge warning">Revisar</span>
+          </div>
+
+          <p class="kpi-foot">Nivel de humedad relativa ambiental</p>
+        </article>
+
+        <article class="card kpi-card">
+          <div class="kpi-top">
+            <span class="kpi-label">Calidad de aire</span>
+            <span class="kpi-icon air">☁</span>
+          </div>
+
+          <div class="kpi-main">
+            <h3>0 RAW</h3>
+            <span class="status-badge warning">Media</span>
+          </div>
+
+          <p class="kpi-foot">Lectura RAW del sensor MQ-135</p>
+        </article>
+
+        <article class="card kpi-card">
+          <div class="kpi-top">
+            <span class="kpi-label">Humedad de suelo</span>
+            <span class="kpi-icon humidity">🌱</span>
+          </div>
+
+          <div class="kpi-main">
+            <h3>0 %</h3>
+            <span class="status-badge success">Óptimo</span>
+          </div>
+
+          <p class="kpi-foot">Nivel de humedad del sustrato</p>
+        </article>
+
+      </section>
+
+      <section class="content-grid">
+
+        <article class="card chart-card">
+          <div class="card-head">
+            <div>
+              <h3>Humedad de suelo y necesidad de riego</h3>
+              <p>Visualización clara de los últimos registros enviados por la ESP32</p>
+            </div>
+            <span class="card-tag">Últimos 6 registros</span>
+          </div>
+
+          <div class="chart-info-row">
+            <div class="chart-pill">
+              <strong id="soil-current">-- %</strong>
+              <span>Humedad actual</span>
+            </div>
+
+            <div class="chart-pill">
+              <strong id="soil-status">--</strong>
+              <span>Estado del suelo</span>
+            </div>
+
+            <div class="chart-pill">
+              <strong id="soil-risk">--</strong>
+              <span>Necesidad de riego</span>
+            </div>
+          </div>
+
+          <div class="chart-canvas-wrap">
+            <canvas id="riegoChart"></canvas>
+          </div>
+
+          <p class="chart-help">
+            A menor humedad del suelo, mayor necesidad de riego.
+          </p>
+        </article>
+
+        <div class="side-column">
+
+          <article class="card system-card">
+            <div class="card-head">
+              <div>
+                <h3>Estado del sistema</h3>
+                <p>Diagnóstico general</p>
+              </div>
+            </div>
+
+            <div class="system-list">
+              <div class="system-item">
+                <span>Sensores</span>
+                <span class="system-ok">Verificando...</span>
+              </div>
+
+              <div class="system-item">
+                <span>Actuadores</span>
+                <span class="system-ok">Verificando...</span>
+              </div>
+
+              <div class="system-item">
+                <span>Red local</span>
+                <span class="system-ok">Verificando...</span>
+              </div>
+
+              <div class="system-item">
+                <span>Último envío</span>
+                <span class="system-neutral">Sin datos</span>
+              </div>
+            </div>
+
+            <button class="secondary-btn" type="button" id="verDetallesBtn">Ver detalles</button>
+          </article>
+
+          <article class="card esp-card">
+            <div class="esp-icon">📶</div>
+
+            <div class="esp-info">
+              <h3>Conexión a ESP32</h3>
+              <p class="online">● Verificando conexión</p>
+              <small>Servidor local activo</small>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Invernadero-Z | Sensores</title>
+
+  <link rel="stylesheet" href="../CSS/dashboard.css">
+  <link rel="stylesheet" href="../CSS/sensores.css">
+
+  <script src="../js/fecha.js" defer></script>
+<script src="../js/sensoresfuncion.js?v=3" defer></script>
+  <script src="../js/auth.js" defer></script>
+</head>
+
+<body>
+  <div class="app">
+
+    <aside class="sidebar">
+      <div class="sidebar-brand"></div>
+
+      <nav class="sidebar-nav">
+        <a href="../frontend/index.html" class="nav-link">
+          <span class="nav-icon">⌂</span>
+          <span>Inicio</span>
+        </a>
+
+        <a href="../frontend/sensores.html" class="nav-link">
+          <span class="nav-icon">⌘</span>
+          <span>Sensores</span>
+        </a>
+
+        <a href="../frontend/control.html" class="nav-link">
+          <span class="nav-icon">🛠</span>
+          <span>Control manual</span>
+        </a>
+
+        <a href="../frontend/automatizacion.html" class="nav-link">
+          <span class="nav-icon">⏻</span>
+          <span>Automatización</span>
+        </a>
+
+        <a href="../frontend/historial.html" class="nav-link">
+          <span class="nav-icon">◔</span>
+          <span>Historial</span>
+        </a>
+      </nav>
+    </aside>
+
+    <main class="main">
+
+      <header class="topbar">
+        <div class="topbar-left">
+          <div>
+            <h1>Sensores</h1>
+            <p>Lectura y monitoreo de variables ambientales</p>
+          </div>
+        </div>
+
+        <div class="datetime-box">
+          <div id="fecha-actual"></div>
+          <div id="hora-actual"></div>
+        </div>
+
+        <div class="topbar-right">
+
+          <button class="icon-btn" type="button" title="Notificaciones">
+            <img src="../img/notification.png" alt="Notificaciones" class="nav-icon-img">
+          </button>
+
+          <button class="icon-btn" type="button" title="Configuración">
+            <img src="../img/setting.png" alt="Configuración" class="nav-icon-img">
+          </button>
+
+          <button class="icon-btn" type="button" title="Perfil">
+            <img src="../img/user.png" alt="Perfil" class="nav-icon-img">
+          </button>
+
+          <div class="user-box">
+            <span class="user-name">Invernadero</span>
+            <button class="icon-btn" type="button" title="Cerrar sesión">
+              <img src="../img/logout.png" alt="Cerrar sesión" class="nav-icon-img">
+            </button>
+          </div>
+
+        </div>
+      </header>
+
+      <section class="hero sensors-hero">
+        <div class="hero-actions">
+          <button class="primary-btn" type="button">Actualizar datos</button>
+        </div>
+      </section>
+
+      <section class="sensor-list">
+
+        <!-- TEMPERATURA -->
+        <article class="card sensor-panel">
+          <div class="sensor-panel-head">
+            <div>
+              <h3>Temperatura</h3>
+              <p>Sensor ambiental principal</p>
+            </div>
+            <span class="status-badge success">Óptimo</span>
+          </div>
+
+          <div class="sensor-panel-body">
+            <div class="sensor-value-block">
+              <strong>0 °C</strong>
+              <small>Rango ideal entre 22 °C y 30 °C</small>
+            </div>
+
+            <div class="sensor-progress-wrap">
+              <div class="sensor-progress">
+                <div class="sensor-fill fill-temp"></div>
+              </div>
+              <div class="sensor-scale">
+                <span>Bajo</span>
+                <span>Normal</span>
+                <span>Alto</span>
+              </div>
+            </div>
+
+            <div class="sensor-symbol temp-symbol">🌡</div>
+          </div>
+        </article>
+
+        <!-- HUMEDAD AMBIENTE -->
+        <article class="card sensor-panel">
+          <div class="sensor-panel-head">
+            <div>
+              <h3>Humedad ambiente</h3>
+              <p>Lectura relativa del ambiente</p>
+            </div>
+            <span class="status-badge warning">Alerta</span>
+          </div>
+
+          <div class="sensor-panel-body">
+            <div class="sensor-value-block">
+              <strong>0 %</strong>
+              <small>Nivel de humedad relativa ambiental</small>
+            </div>
+
+            <div class="sensor-progress-wrap">
+              <div class="sensor-progress">
+                <div class="sensor-fill fill-humidity"></div>
+              </div>
+              <div class="sensor-scale">
+                <span>Bajo</span>
+                <span>Normal</span>
+                <span>Alto</span>
+              </div>
+            </div>
+
+            <div class="sensor-symbol humidity-symbol">💧</div>
+          </div>
+        </article>
+
+        <!-- CALIDAD DE AIRE -->
+        <article class="card sensor-panel">
+          <div class="sensor-panel-head">
+            <div>
+              <h3>Calidad de aire</h3>
+              <p>Lectura RAW del sensor MQ-135</p>
+            </div>
+            <span class="status-badge danger">Mala</span>
+          </div>
+
+          <div class="sensor-panel-body">
+            <div class="sensor-value-block">
+              <strong>0 RAW</strong>
+              <small>Se recomienda ventilación si el valor es elevado</small>
+            </div>
+
+            <div class="sensor-progress-wrap">
+              <div class="sensor-progress">
+                <div class="sensor-fill fill-air"></div>
+              </div>
+              <div class="sensor-scale">
+                <span>Buena</span>
+                <span>Media</span>
+                <span>Crítica</span>
+              </div>
+            </div>
+
+            <div class="sensor-symbol air-symbol">☁</div>
+          </div>
+        </article>
+
+        <!-- HUMEDAD DE SUELO -->
+        <article class="card sensor-panel">
+          <div class="sensor-panel-head">
+            <div>
+              <h3>Humedad de suelo</h3>
+              <p>Lectura del sustrato del cultivo</p>
+            </div>
+            <span class="status-badge success">Óptimo</span>
+          </div>
+
+          <div class="sensor-panel-body">
+            <div class="sensor-value-block">
+              <strong>0 %</strong>
+              <small>Nivel de humedad del sustrato</small>
+            </div>
+
+            <div class="sensor-progress-wrap">
+              <div class="sensor-progress">
+                <div class="sensor-fill fill-soil"></div>
+              </div>
+              <div class="sensor-scale">
+                <span>Seco</span>
+                <span>Normal</span>
+                <span>Húmedo</span>
+              </div>
+            </div>
+
+            <div class="sensor-symbol humidity-symbol">🌱</div>
+          </div>
+        </article>
+
+      </section>
+
+      <section class="sensor-bottom-grid">
+
+        <article class="card reading-panel">
+          <div class="card-head">
+            <div>
+              <h3>Última lectura</h3>
+              <p>Registro más reciente del sistema</p>
+            </div>
+            <span class="card-tag">Actual</span>
+          </div>
+
+          <div class="reading-content">
+            <div class="reading-item">
+              <span>Fecha</span>
+              <strong>--/--/----</strong>
+            </div>
+
+            <div class="reading-item">
+              <span>Hora</span>
+              <strong>--:--</strong>
+            </div>
+
+            <div class="reading-item">
+              <span>Origen</span>
+              <strong>Nodo ambiental principal</strong>
+            </div>
+
+            <div class="reading-item">
+              <span>Estado</span>
+              <strong class="reading-ok">Lectura recibida correctamente</strong>
+            </div>
+          </div>
+        </article>
+
+        <article class="card summary-panel">
+          <div class="card-head">
+            <div>
+              <h3>Resumen rápido</h3>
+              <p>Condición general de sensores</p>
+            </div>
+          </div>
+
+          <div class="summary-list">
+            <div class="summary-item">
+              <span>Temperatura</span>
+              <strong class="ok-text">Estable</strong>
+            </div>
+
+            <div class="summary-item">
+              <span>Humedad ambiente</span>
+              <strong class="warn-text">Revisar</strong>
+            </div>
+
+            <div class="summary-item">
+              <span>Calidad de aire</span>
+              <strong class="bad-text">Atención</strong>
+            </div>
+
+            <div class="summary-item">
+              <span>Humedad de suelo</span>
+              <strong class="ok-text">Estable</strong>
+            </div>
+          </div>
+        </article>
+
+      </section>
+
+    </main>
+  </div>
+</body>
+
+</html>
