@@ -1,0 +1,203 @@
+.sensors-hero{
+  margin-bottom: 22px;
+}
+
+.sensor-list{
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.sensor-panel{
+  padding: 20px;
+}
+
+.sensor-panel-head{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.sensor-panel-head h3{
+  margin: 0;
+  font-size: 22px;
+}
+
+.sensor-panel-head p{
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.sensor-panel-body{
+  display: grid;
+  grid-template-columns: 220px 1fr 80px;
+  align-items: center;
+  gap: 22px;
+}
+
+.sensor-value-block strong{
+  display: block;
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.sensor-value-block small{
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.sensor-progress-wrap{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sensor-progress{
+  width: 100%;
+  height: 18px;
+  border-radius: 999px;
+  background: #e5efe7;
+  overflow: hidden;
+  position: relative;
+}
+
+.sensor-fill{
+  height: 100%;
+  border-radius: 999px;
+  width: 0%;
+  transition: width 0.4s ease;
+}
+
+.fill-temp{
+  width: 64%;
+  background: linear-gradient(90deg, #86e4a0 0%, #57bf73 100%);
+}
+
+.fill-humidity{
+  width: 82%;
+  background: linear-gradient(90deg, #bce78f 0%, #e7c84f 100%);
+}
+
+.fill-air{
+  width: 88%;
+  background: linear-gradient(90deg, #f7c47e 0%, #eb6b6b 100%);
+}
+
+/* Barra nueva para humedad de suelo */
+.fill-soil{
+  width: 0%;
+  background: linear-gradient(90deg, #f4c542 0%, #65c466 50%, #2f80ed 100%);
+}
+
+.sensor-scale{
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.sensor-symbol{
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #f7faf8 0%, #eef5f0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+}
+
+.sensor-bottom-grid{
+  display: grid;
+  grid-template-columns: 1.5fr .9fr;
+  gap: 18px;
+}
+
+.reading-panel,
+.summary-panel{
+  padding: 20px;
+}
+
+.reading-content{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.reading-item{
+  background: var(--panel-2);
+  border: 1px solid #ebf1ed;
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.reading-item span{
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.reading-item strong{
+  font-size: 16px;
+}
+
+.reading-ok{
+  color: #1f7b39;
+}
+
+.summary-list{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.summary-item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px;
+  border-radius: 12px;
+  background: var(--panel-2);
+  border: 1px solid #ebf1ed;
+}
+
+.ok-text{
+  color: #1f7b39;
+}
+
+.warn-text{
+  color: #9a7a0b;
+}
+
+.bad-text{
+  color: #b23636;
+}
+
+@media (max-width: 1100px){
+  .sensor-panel-body{
+    grid-template-columns: 1fr;
+    align-items: flex-start;
+  }
+
+  .sensor-symbol{
+    width: 58px;
+    height: 58px;
+  }
+
+  .sensor-bottom-grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px){
+  .reading-content{
+    grid-template-columns: 1fr;
+  }
+}
