@@ -1,4 +1,4 @@
-const API_URL = '../api.php';
+const API_URL = 'api.php';
 
 let ultimaLecturaFecha = null;
 let riegoChart = null;
