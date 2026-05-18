@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost/PANEL-COSECHA-Z/backend/api/api.php';
+const API_URL = '../api.php';
 
 let ultimaLecturaFecha = null;
 let riegoChart = null;
