@@ -42,12 +42,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $mail->isSMTP();
             $mail->Host       = 'smtp.gmail.com';
             $mail->SMTPAuth   = true;
-            $mail->Username   = 'invernaderoinstitucional@gmail.com';
-            $mail->Password   = 'crzhyuowzbdvhxya'; 
+            $mail->Username   = '';
+            $mail->Password   = ''; 
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port       = 587;
             
-            $mail->setFrom('invernaderoinstitucional@gmail.com', 'Sistema Control Cultivo');
+            $mail->setFrom('', 'Sistema Control Cultivo');
             $mail->addAddress($email);
             
             $mail->isHTML(true);
